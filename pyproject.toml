@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "arete-eval"
+version = "0.1.0"
+description = "ARETE — a framework-agnostic toolkit for evaluating agentic RAG systems"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Prashanth" }]
+keywords = ["rag", "agentic", "evaluation", "llm", "retrieval", "benchmark"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Core stays dependency-light on purpose: metrics are implemented from scratch.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4.0", "pre-commit>=3.0"]
+
+[project.urls]
+Homepage = "https://github.com/prashanthaasari18/agentic-rag-eval-toolkit"
+Issues = "https://github.com/prashanthaasari18/agentic-rag-eval-toolkit/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/arete"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
